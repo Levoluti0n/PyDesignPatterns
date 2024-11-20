@@ -63,7 +63,9 @@ class MacOSFactory(GUIFactory):
     def create_checkbox(self) -> Checkbox:
         return MacOSCheckbox()
 
-def create_ui(factory: GUIFactory):
+def afactory_create_ui():
+    factory = MacOSFactory()
+    print("Created Mac AFactory")
     button = factory.create_button()
     checkbox = factory.create_checkbox()
     print(button.render())

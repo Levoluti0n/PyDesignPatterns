@@ -57,7 +57,7 @@ class Singleton(metaclass=SingletonMeta):
 
 def create_singleton():
     obj = Singleton()
-    print(f"Instance ID: {id(obj)}")
+    print(f"Singleton Instance ID: {id(obj)}")
 
 def threads_test():
     threads = [threading.Thread(target=create_singleton) for _ in range(10)]

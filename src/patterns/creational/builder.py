@@ -109,3 +109,7 @@ class CarDirector:
                 .set_doors(5)
                 .set_color("Silver")
                 .get_result())
+    
+def builder_test(): 
+    car = CarDirector(SuvCarBuilder()).construct_suv()
+    print(car)

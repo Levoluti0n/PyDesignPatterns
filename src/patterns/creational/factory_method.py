@@ -19,14 +19,17 @@ class Vehicle(ABC):
         pass
 
 class Car(Vehicle):
+    name = "Car"
     def drive(self):
         return "Driving a Car"
 
 class Bike(Vehicle):
+    name = "Bike"
     def drive(self):
         return "Riding a Bike"
 
 class Truck(Vehicle):
+    name = "Truck"
     def drive(self):
         return "Driving a Truck"
 
@@ -58,4 +61,5 @@ def get_vehicle_to_drive(vehicle_type: str):
         raise ValueError(f"Unknown vehicle type: {vehicle_type}")
 
     vehicle = factory.create_vehicle()
-    print(vehicle.drive())
+    print(f"Created Vehicles: {vehicle.name}")
+    print(vehicle.drive(), '\n')

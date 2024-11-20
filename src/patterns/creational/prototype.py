@@ -31,7 +31,7 @@ class TextDocument(Document):
         return copy.deepcopy(self)
 
     def display(self):
-        print(f"TextDocument Content: {self.content}")
+        return f"TextDocument Content: {self.content}"
 
 class SpreadsheetDocument(Document):
     def __init__(self, data: list):
@@ -41,8 +41,10 @@ class SpreadsheetDocument(Document):
         return copy.deepcopy(self)
 
     def display(self):
-        print(f"SpreadsheetDocument Data: {self.data}")
+        return f"SpreadsheetDocument Data: {self.data}"
 
-def create_document_clone(document: Document):
+def create_document_clone():
+    document = TextDocument("Hello World, My First Document")
+    print(f"Created Document: {document.display()}")
     clone = document.clone()
-    return clone
+    print(f"Clone of Document: {clone.display()}")
