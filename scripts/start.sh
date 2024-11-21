@@ -26,4 +26,4 @@ echo "Running the application..."
 python src/main.py
 
 deactivate
-echo "Application started successfully."
+echo -e "\nApplication Ended successfully.\n"
