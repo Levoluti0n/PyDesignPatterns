@@ -14,16 +14,20 @@ Usage:
 import copy
 from abc import ABC, abstractmethod
 
+
 class Document(ABC):
+
     @abstractmethod
     def clone(self):
         pass
 
     @abstractmethod
     def display(self):
-        pass 
+        pass
+
 
 class TextDocument(Document):
+
     def __init__(self, content: str):
         self.content = content
 
@@ -33,7 +37,9 @@ class TextDocument(Document):
     def display(self):
         return f"TextDocument Content: {self.content}"
 
+
 class SpreadsheetDocument(Document):
+
     def __init__(self, data: list):
         self.data = data
 
@@ -42,6 +48,7 @@ class SpreadsheetDocument(Document):
 
     def display(self):
         return f"SpreadsheetDocument Data: {self.data}"
+
 
 def create_document_clone():
     document = TextDocument("Hello World, My First Document")

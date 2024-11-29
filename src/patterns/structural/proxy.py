@@ -18,7 +18,9 @@ Usage:
 
 from abc import ABC, abstractmethod
 
+
 class RealImage:
+
     def __init__(self, filename):
         self.filename = filename
         self.load_image()
@@ -29,12 +31,16 @@ class RealImage:
     def display(self):
         print(f"Displaying image: {self.filename}")
 
+
 class ImageProxy(ABC):
+
     @abstractmethod
     def display(self):
         pass
 
+
 class VirtualImageProxy(ImageProxy):
+
     def __init__(self, filename):
         self.filename = filename
         self._real_image = None
@@ -44,25 +50,35 @@ class VirtualImageProxy(ImageProxy):
             self._real_image = RealImage(self.filename)
         self._real_image.display()
 
+
 class User(ABC):
+
     @abstractmethod
     def has_access(self):
         pass
 
+
 class AdminUser(User):
+
     def has_access(self):
         return True
 
+
 class RegularUser(User):
+
     def has_access(self):
         return False
-    
+
+
 class RestrictedImage(ABC):
+
     @abstractmethod
     def display(self):
         pass
 
+
 class ProtectionProxyImage(RestrictedImage):
+
     def __init__(self, filename, user: User):
         self.filename = filename
         self.user = user
@@ -72,7 +88,10 @@ class ProtectionProxyImage(RestrictedImage):
         if self.user.has_access():
             self._real_image.display()
         else:
-            print(f"Access denied: {self.user.__class__.__name__} cannot access {self.filename}")
+            print(
+                f"Access denied: {self.user.__class__.__name__} cannot access {self.filename}"
+            )
+
 
 def proxy_image():
     print("Using Virtual Proxy:")
@@ -87,7 +106,6 @@ def proxy_image():
     protected_image = ProtectionProxyImage("restricted_image.jpg", admin_user)
     protected_image.display()
 
-    protected_image = ProtectionProxyImage("restricted_image.jpg", regular_user)
+    protected_image = ProtectionProxyImage("restricted_image.jpg",
+                                           regular_user)
     protected_image.display()
-
-    

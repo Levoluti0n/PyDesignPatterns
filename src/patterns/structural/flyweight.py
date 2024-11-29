@@ -14,16 +14,22 @@ Usage:
 
 from abc import ABC, abstractmethod
 
+
 class TreeType:
+
     def __init__(self, species, texture, color):
         self.species = species
         self.texture = texture
         self.color = color
 
     def display(self, x, y):
-        print(f"TreeType: {self.species}, Texture: {self.texture}, Color: {self.color}, Position: ({x}, {y})")
+        print(
+            f"TreeType: {self.species}, Texture: {self.texture}, Color: {self.color}, Position: ({x}, {y})"
+        )
+
 
 class TreeTypeFactory:
+
     def __init__(self):
         self._tree_types = {}
 
@@ -36,7 +42,9 @@ class TreeTypeFactory:
             print(f"Reusing existing TreeType: {key}")
         return self._tree_types[key]
 
+
 class Tree:
+
     def __init__(self, x, y, tree_type: TreeType):
         self.x = x
         self.y = y
@@ -44,6 +52,7 @@ class Tree:
 
     def display(self):
         self.tree_type.display(self.x, self.y)
+
 
 def flyweight_forest_draw():
     factory = TreeTypeFactory()
@@ -54,4 +63,3 @@ def flyweight_forest_draw():
     tree2.display()
     tree3.display()
     print(f"{''*5}Total TreeTypes created: {len(factory._tree_types)}")
-

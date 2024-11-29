@@ -13,21 +13,28 @@ Usage:
 
 from abc import ABC, abstractmethod
 
+
 class PaymentProcessor(ABC):
+
     @abstractmethod
     def pay(self, amount):
         pass
 
+
 class StripePayment:
+
     def make_payment(self, amount):
         print(f"Processing payment of ${amount} via Stripe.")
 
+
 class StripeAdapter(PaymentProcessor):
+
     def __init__(self, stripe):
         self.stripe = stripe
-    
+
     def pay(self, amount):
         self.stripe.make_payment(amount)
+
 
 def process_payment(amount):
     payment_processor = StripePayment()

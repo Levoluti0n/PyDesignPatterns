@@ -15,20 +15,24 @@ Usage:
 
 from abc import ABC, abstractmethod
 
+
 class Handler(ABC):
+
     def __init__(self, next_handler=None):
         self.next_handler = next_handler
-    
+
     def set_next(self, handler):
         self.next_handler = handler
         return handler
-    
+
     @abstractmethod
     def handle(self, request):
         if self.next_handler:
             return self.next_handler.handle(request)
-        
+
+
 class DebugLogger(Handler):
+
     def handle(self, request):
         level, message = request
         if level == "DEBUG":
@@ -36,7 +40,9 @@ class DebugLogger(Handler):
         elif self.next_handler:
             self.next_handler.handle(request)
 
+
 class InfoLogger(Handler):
+
     def handle(self, request):
         level, message = request
         if level == "INFO":
@@ -46,9 +52,11 @@ class InfoLogger(Handler):
 
 
 class DefaultLogger(Handler):
+
     def handle(self, request):
         level, message = request
         print(f"[DEFAULT]: {level} - {message}")
+
 
 def chain_requests():
     debug_logger = DebugLogger()
@@ -56,11 +64,9 @@ def chain_requests():
     default_logger = DefaultLogger()
 
     debug_logger.set_next(info_logger).set_next(default_logger)
-    requests = [
-        ("DEBUG", "This is a debug message."),
-        ("INFO", "This is an informational message."),
-        ("WARNING", "This is an unhandled warning message.")
-    ]
+    requests = [("DEBUG", "This is a debug message."),
+                ("INFO", "This is an informational message."),
+                ("WARNING", "This is an unhandled warning message.")]
 
     for req in requests:
         debug_logger.handle(req)

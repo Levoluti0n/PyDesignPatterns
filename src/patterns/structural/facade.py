@@ -11,7 +11,9 @@ Usage:
 -------------------------------------------------
 """
 
+
 class LightSystem:
+
     def turn_on(self):
         print("Lights are turned ON.")
 
@@ -21,18 +23,24 @@ class LightSystem:
     def dim_lights(self, level):
         print(f"Lights are dimmed to {level}% brightness.")
 
+
 class Thermostat:
+
     def set_temperature(self, temperature):
         print(f"Thermostat is set to {temperature}°C.")
 
+
 class SecurityCamera:
+
     def activate(self):
         print("Security cameras are activated.")
 
     def deactivate(self):
         print("Security cameras are deactivated.")
 
+
 class EntertainmentSystem:
+
     def turn_on_tv(self):
         print("TV is turned ON.")
 
@@ -42,7 +50,9 @@ class EntertainmentSystem:
     def play_movie(self, movie_name):
         print(f"Playing movie: {movie_name}")
 
+
 class SmartHomeFacade:
+
     def __init__(self):
         self.thermostat = Thermostat()
         self.light_system = LightSystem()
@@ -74,6 +84,7 @@ class SmartHomeFacade:
         self.security_camera.activate()
         self.thermostat.set_temperature(16)
         self.entertainment_system.turn_off_tv()
+
 
 def facade_smart_home():
     smart_home = SmartHomeFacade()

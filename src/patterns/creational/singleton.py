@@ -10,13 +10,12 @@ Usage:
     available to all clients; for example, a single database object shared by different parts of the program.
 -------------------------------------------------
 """
-
 '''
     *** Race Condition
 '''
 # import threading
 
-# class Singleton: 
+# class Singleton:
 #     _instance = None
 
 #     def __new__(cls, *args, **kwargs):
@@ -34,12 +33,12 @@ Usage:
 
 # for thread in threads:
 #     thread.join()
-
 '''
    *** Solution of Race Condition
 '''
 
 import threading
+
 
 class SingletonMeta(type):
     _instances = {}
@@ -49,15 +48,19 @@ class SingletonMeta(type):
         if cls not in cls._instances:
             with cls._lock:
                 if cls not in cls._instances:
-                    cls._instances[cls] = super(SingletonMeta, cls).__call__(*args, **kwargs)
+                    cls._instances[cls] = super(SingletonMeta,
+                                                cls).__call__(*args, **kwargs)
         return cls._instances[cls]
-    
+
+
 class Singleton(metaclass=SingletonMeta):
     pass
+
 
 def create_singleton():
     obj = Singleton()
     print(f"Singleton Instance ID: {id(obj)}")
+
 
 def threads_test():
     threads = [threading.Thread(target=create_singleton) for _ in range(10)]

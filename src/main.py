@@ -1,17 +1,22 @@
 from patterns.creational import *
 from patterns.structural import *
 
+
 def main():
     #----------------------  CREATIONAL PATTERNS  ----------------------
 
     print("\n----------------- Testing Singleton Pattern ----------------- \n")
     threads_test()
 
-    print("\n----------------- Testing Factory Method Pattern ----------------- \n")
+    print(
+        "\n----------------- Testing Factory Method Pattern ----------------- \n"
+    )
     get_vehicle_to_drive("car")
     get_vehicle_to_drive("truck")
 
-    print("\n----------------- Testing Abstract Factory Pattern ----------------- \n")
+    print(
+        "\n----------------- Testing Abstract Factory Pattern ----------------- \n"
+    )
     afactory_create_ui()
 
     print("\n----------------- Testing Prototype Pattern ----------------- \n")
@@ -25,7 +30,9 @@ def main():
     print("\n----------------- Testing Adapter Pattern ----------------- \n")
     process_payment(100)
 
-    print("\n----------------- Testing Bridge Method Pattern ----------------- \n")
+    print(
+        "\n----------------- Testing Bridge Method Pattern ----------------- \n"
+    )
     bridge_toggle()
 
     print("\n----------------- Testing Composite Pattern ----------------- \n")
@@ -42,6 +49,7 @@ def main():
 
     print("\n----------------- Testing Proxy Pattern ----------------- \n")
     proxy_image()
+
 
 if __name__ == "__main__":
     main()

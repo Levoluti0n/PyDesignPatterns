@@ -13,7 +13,9 @@ Usage:
 """
 from abc import ABC, abstractmethod
 
+
 class FileSystemComponent(ABC):
+
     def __init__(self, name):
         self.name = name
 
@@ -25,7 +27,9 @@ class FileSystemComponent(ABC):
     def size(self):
         pass
 
+
 class File(FileSystemComponent):
+
     def __init__(self, name, file_size):
         super().__init__(name)
         self._file_size = file_size
@@ -36,7 +40,9 @@ class File(FileSystemComponent):
     def size(self):
         return self._file_size
 
+
 class Folder(FileSystemComponent):
+
     def __init__(self, name):
         super().__init__(name)
         self._children = []
@@ -54,6 +60,7 @@ class Folder(FileSystemComponent):
 
     def size(self):
         return sum(child.size() for child in self._children)
+
 
 def composite_folder():
     file1 = File("file1.txt", 100)

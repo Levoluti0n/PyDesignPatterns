@@ -13,7 +13,9 @@ Usage:
 
 from abc import ABC, abstractmethod
 
+
 class Command(ABC):
+
     @abstractmethod
     def execute(self):
         pass
@@ -22,21 +24,27 @@ class Command(ABC):
     def undo(self):
         pass
 
+
 class Light:
+
     def on(self):
         print("Light is ON")
 
     def off(self):
         print("Light is OFF")
 
+
 class Fan:
+
     def start(self):
         print("Fan is RUNNING")
 
     def stop(self):
         print("Fan is STOPPED")
 
+
 class LightOnCommand(Command):
+
     def __init__(self, light):
         self.light = light
 
@@ -45,8 +53,10 @@ class LightOnCommand(Command):
 
     def undo(self):
         self.light.off()
+
 
 class LightOffCommand(Command):
+
     def __init__(self, light):
         self.light = light
 
@@ -56,7 +66,9 @@ class LightOffCommand(Command):
     def undo(self):
         self.light.on()
 
+
 class FanStartCommand(Command):
+
     def __init__(self, fan):
         self.fan = fan
 
@@ -68,6 +80,7 @@ class FanStartCommand(Command):
 
 
 class FanStopCommand(Command):
+
     def __init__(self, fan):
         self.fan = fan
 
@@ -77,7 +90,9 @@ class FanStopCommand(Command):
     def undo(self):
         self.fan.start()
 
+
 class SmartHomeController:
+
     def __init__(self):
         self.command_history = []
         self.redo_stack = []
@@ -86,7 +101,7 @@ class SmartHomeController:
         command.execute()
         self.command_history.append(command)
         self.redo_stack.clear()
-    
+
     def undo(self):
         if self.command_history:
             command = self.command_history.pop()
@@ -94,7 +109,7 @@ class SmartHomeController:
             self.redo_stack.append(command)
         else:
             print("Nothing to undo")
-    
+
     def redo(self):
         if self.redo_stack:
             command = self.redo_stack.pop()
@@ -119,4 +134,3 @@ def command_smart_home():
     controller.undo()
 
     controller.redo()
-

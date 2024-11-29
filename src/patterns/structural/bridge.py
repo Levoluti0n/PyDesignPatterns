@@ -17,7 +17,9 @@ Usage:
 
 from abc import ABC, abstractmethod
 
+
 class Device(ABC):
+
     @abstractmethod
     def power(self):
         pass
@@ -34,7 +36,9 @@ class Device(ABC):
     def is_on(self):
         pass
 
+
 class TV(Device):
+
     def __init__(self):
         self._is_on = False
         self._volume = 10
@@ -56,7 +60,9 @@ class TV(Device):
     def is_on(self):
         return self._is_on
 
+
 class Radio(Device):
+
     def __init__(self):
         self._is_on = False
         self._volume = 5
@@ -78,7 +84,9 @@ class Radio(Device):
     def is_on(self):
         return self._is_on
 
+
 class Remote(ABC):
+
     def __init__(self, device: Device):
         self.device = device
 
@@ -94,7 +102,9 @@ class Remote(ABC):
     def volume_down(self):
         pass
 
+
 class BasicRemote(Remote):
+
     def toggle_power(self):
         print("Basic Remote: Toggling Power")
         self.device.power()
@@ -107,7 +117,9 @@ class BasicRemote(Remote):
         print("Basic Remote: Decreasing Volume")
         self.device.volume_down()
 
+
 class AdvancedRemote(Remote):
+
     def toggle_power(self):
         print("Advanced Remote: Toggling Power")
         self.device.power()
@@ -124,6 +136,7 @@ class AdvancedRemote(Remote):
         print("Advanced Remote: Muting Device")
         if self.device.is_on():
             print("Device muted (volume set to 0)")
+
 
 def bridge_toggle():
     tv = TV()

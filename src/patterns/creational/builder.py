@@ -13,7 +13,9 @@ Usage:
 
 from abc import ABC, abstractmethod
 
+
 class Car:
+
     def __init__(self):
         self.engine = None
         self.wheels = None
@@ -22,8 +24,10 @@ class Car:
 
     def __str__(self):
         return f"Car with Engine: {self.engine}, Wheels: {self.wheels}, Doors: {self.doors}, Color: {self.color}"
-    
+
+
 class CarBuilder(ABC):
+
     @abstractmethod
     def set_engine(self, engine: str):
         pass
@@ -43,8 +47,10 @@ class CarBuilder(ABC):
     @abstractmethod
     def get_result(self) -> Car:
         pass
+
 
 class SedanCarBuilder(CarBuilder):
+
     def __init__(self):
         self.car = Car()
 
@@ -66,8 +72,10 @@ class SedanCarBuilder(CarBuilder):
 
     def get_result(self) -> Car:
         return self.car
-    
+
+
 class SuvCarBuilder(CarBuilder):
+
     def __init__(self):
         self.car = Car()
 
@@ -89,27 +97,22 @@ class SuvCarBuilder(CarBuilder):
 
     def get_result(self) -> Car:
         return self.car
+
 
 class CarDirector:
+
     def __init__(self, builder: CarBuilder):
         self.builder = builder
 
     def construct_sedan(self):
-        return (self.builder
-                .set_engine("V6 Engine")
-                .set_wheels(4)
-                .set_doors(4)
-                .set_color("Black")
-                .get_result())
+        return (self.builder.set_engine("V6 Engine").set_wheels(4).set_doors(
+            4).set_color("Black").get_result())
 
     def construct_suv(self):
-        return (self.builder
-                .set_engine("V8 Engine")
-                .set_wheels(4)
-                .set_doors(5)
-                .set_color("Silver")
-                .get_result())
-    
-def builder_test(): 
+        return (self.builder.set_engine("V8 Engine").set_wheels(4).set_doors(
+            5).set_color("Silver").get_result())
+
+
+def builder_test():
     car = CarDirector(SuvCarBuilder()).construct_suv()
     print(car)

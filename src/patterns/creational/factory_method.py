@@ -13,42 +13,59 @@ Usage:
 
 from abc import ABC, abstractmethod
 
+
 class Vehicle(ABC):
+
     @abstractmethod
     def drive(self):
         pass
+
 
 class Car(Vehicle):
     name = "Car"
+
     def drive(self):
         return "Driving a Car"
 
+
 class Bike(Vehicle):
     name = "Bike"
+
     def drive(self):
         return "Riding a Bike"
 
+
 class Truck(Vehicle):
     name = "Truck"
+
     def drive(self):
         return "Driving a Truck"
 
+
 class VehicleFactory(ABC):
+
     @abstractmethod
     def create_vehicle(self) -> Vehicle:
         pass
 
+
 class CarFactory(VehicleFactory):
+
     def create_vehicle(self) -> Vehicle:
         return Car()
 
+
 class BikeFactory(VehicleFactory):
+
     def create_vehicle(self) -> Vehicle:
         return Bike()
 
+
 class TruckFactory(VehicleFactory):
+
     def create_vehicle(self) -> Vehicle:
         return Truck()
+
 
 def get_vehicle_to_drive(vehicle_type: str):
     if vehicle_type == 'car':

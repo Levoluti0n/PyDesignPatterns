@@ -16,7 +16,9 @@ from abc import ABC, abstractmethod
 import zlib
 import base64
 
+
 class DataSource(ABC):
+
     @abstractmethod
     def write_data(self, data):
         pass
@@ -25,7 +27,9 @@ class DataSource(ABC):
     def read_data(self):
         pass
 
+
 class InMemoryDataSource(DataSource):
+
     def __init__(self):
         self._data = None
 
@@ -36,8 +40,10 @@ class InMemoryDataSource(DataSource):
     def read_data(self):
         print(f"Data retrieved: {self._data}")
         return self._data
-    
+
+
 class DataSourceDecorator(DataSource):
+
     def __init__(self, wrappee: DataSource):
         self._wrappee = wrappee
 
@@ -46,8 +52,10 @@ class DataSourceDecorator(DataSource):
 
     def read_data(self):
         return self._wrappee.read_data()
-    
+
+
 class CompressionDecorator(DataSourceDecorator):
+
     def write_data(self, data):
         compressed_data = base64.b64encode(zlib.compress(data.encode()))
         print("Data compressed.")
@@ -59,7 +67,9 @@ class CompressionDecorator(DataSourceDecorator):
         print("Data decompressed.")
         return decompressed_data
 
+
 class EncryptionDecorator(DataSourceDecorator):
+
     def write_data(self, data):
         encrypted_data = base64.b64encode(data.encode())
         print(f"Data encrypted")
@@ -70,10 +80,12 @@ class EncryptionDecorator(DataSourceDecorator):
         decrypted_data = base64.b64decode(data).decode()
         print("Data decrypted.")
         return decrypted_data
-    
+
+
 def decorator_crypting():
     in_memory_source = InMemoryDataSource()
-    compressed_encrypted_source = CompressionDecorator(EncryptionDecorator(in_memory_source))
+    compressed_encrypted_source = CompressionDecorator(
+        EncryptionDecorator(in_memory_source))
 
     data_to_store = "This is some secret data!"
     print("\nWriting Data...")
