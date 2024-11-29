@@ -1,6 +1,6 @@
 """
 -------------------------------------------------
-File: bridge.py
+File: composite.py
 Intent: 
     Composite is a structural design pattern that lets
     you compose objects into tree structures and then work
@@ -11,7 +11,6 @@ Usage:
     to implement a tree-like object structure.
 -------------------------------------------------
 """
-
 from abc import ABC, abstractmethod
 
 class FileSystemComponent(ABC):
