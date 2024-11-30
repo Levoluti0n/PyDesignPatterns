@@ -1,6 +1,6 @@
 """
 -------------------------------------------------
-File: mediator.py
+File: template_method.py
 Intent: 
     Template Method is a behavioral design pattern that defines
     the skeleton of an algorithm in the superclass but lets subclasses
